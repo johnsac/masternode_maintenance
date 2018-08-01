@@ -36,11 +36,3 @@ if ! crontab -l | grep "/bin/date > ~/.${_coinName}/debug.log"; then
   (crontab -l ; echo "0 0 */2 * * /bin/date > ~/.${_coinName}/debug.log") | crontab -
 fi
 
-# Warning that the script will reboot the server
-# echo "WARNING: This script will reboot the server when it's finished."
-# printf "Press Ctrl+C to cancel or Enter to continue: "
-# read IGNORE
-
-
-# Reboot the server
-# reboot
