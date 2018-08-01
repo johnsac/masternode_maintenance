@@ -5,4 +5,4 @@ Script to automatically start masternode upon reboot and occasionally delete the
 wget https://raw.githubusercontent.com/johnsac/masternode_maintenance/master/maintain.sh
 
 
-To run: bash maintain.sh
+bash maintain.sh
