@@ -1,8 +1,5 @@
 #!/bin/bash
-# install.sh
-# Installs smartnode on Ubuntu 16.04 LTS x64
-# ATTENTION: The anti-ddos part will disable http, https and dns ports.
-# crontab -e 
+# Intended for Ubuntu 16.04 LTS x64
 
 if [ "$(whoami)" != "root" ]; then
   echo "Script must be run as user: root"
@@ -15,11 +12,13 @@ fi
 # example: su - gobyteadmin -c "~/gobyte/src/gobyted -daemon"
 
 
-printf "Name of coin folder:"
+printf "Name of coin folder: "
 read _coinName
 
-
-printf "Exact command for root user to start the node:"
+printf "Example: su - smartadmin -c "smartcashd" "
+printf "Example: su - adnuser -c "~/adn/adnd --daemon" "
+printf "Example: su - gobyteadmin -c "~/gobyte/src/gobyted -daemon" "
+printf "Exact command for root user to start the node (see examples above): "
 read _startNode
 
 
@@ -32,8 +31,16 @@ fi
 
 
 
-# Create a cronjob for clearing the log file
+# Create a cronjob for clearing the log file every two hours
 if ! crontab -l | grep "/bin/date > ~/.${_coinName}/debug.log"; then
   (crontab -l ; echo "0 0 */2 * * /bin/date > ~/.${_coinName}/debug.log") | crontab -
 fi
 
+# Warning that the script will reboot the server
+# echo "WARNING: This script will reboot the server when it's finished."
+# printf "Press Ctrl+C to cancel or Enter to continue: "
+# read IGNORE
+
+
+# Reboot the server
+# reboot
